@@ -1,5 +1,5 @@
 import './style.css'
-
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import * as THREE from 'three'
 
 const scene= new THREE.Scene();
@@ -19,12 +19,14 @@ const material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
 const cylinder = new THREE.Mesh( geometry, material );
 scene.add( cylinder );
 
+const controls = new OrbitControls(camera, renderer.domElement);
+
 function anime() {
   requestAnimationFrame(anime);
   cylinder.rotation.x+=0.01;
   cylinder.rotation.y+=0.01;
   cylinder.rotation.z+=0.01;
-
+  controls.update()
   renderer.render(scene,camera);  
 }
 
